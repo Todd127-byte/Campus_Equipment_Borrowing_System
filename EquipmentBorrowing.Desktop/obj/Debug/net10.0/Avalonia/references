@@ -23,9 +23,9 @@ C:\Users\Ted\.nuget\packages\avalonia.win32\12.1.1\lib\net10.0\Avalonia.Win32.dl
 C:\Users\Ted\.nuget\packages\avalonia.x11\12.1.1\lib\net10.0\Avalonia.X11.dll
 C:\Users\Ted\.nuget\packages\avaloniaui.diagnosticssupport\2.2.3\lib\net10.0\AvaloniaUI.DiagnosticsSupport.Avalonia.dll
 C:\Users\Ted\.nuget\packages\communitytoolkit.mvvm\8.4.2\lib\net8.0\CommunityToolkit.Mvvm.dll
-C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Application\obj\Debug\net10.0\ref\EquipmentBorrowing.Application.dll
-C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\ref\EquipmentBorrowing.Domain.dll
-C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Infrastructure\obj\Debug\net10.0\ref\EquipmentBorrowing.Infrastructure.dll
+C:\Users\Ted\source\repos\Equipment_Borrowing_System\EquipmentBorrowing.Application\obj\Debug\net10.0\ref\EquipmentBorrowing.Application.dll
+C:\Users\Ted\source\repos\Equipment_Borrowing_System\EquipmentBorrowing.Domain\obj\Debug\net10.0\ref\EquipmentBorrowing.Domain.dll
+C:\Users\Ted\source\repos\Equipment_Borrowing_System\EquipmentBorrowing.Infrastructure\obj\Debug\net10.0\ref\EquipmentBorrowing.Infrastructure.dll
 C:\Users\Ted\.nuget\packages\harfbuzzsharp\8.3.1.3\lib\net8.0\HarfBuzzSharp.dll
 C:\Users\Ted\.nuget\packages\microcom.runtime\0.11.6\lib\net8.0\MicroCom.Runtime.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.12\ref\net10.0\Microsoft.CSharp.dll

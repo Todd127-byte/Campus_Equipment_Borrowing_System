@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xYq6rd6u/dI=",
+  "dgSpecHash": "Tok/d5F8gU4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Infrastructure\\EquipmentBorrowing.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Infrastructure\\EquipmentBorrowing.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ted\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Ted\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",

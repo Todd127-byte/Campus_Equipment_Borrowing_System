@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dWToMbGacio=",
+  "dgSpecHash": "NqoiKQ+VYYo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Tests\\EquipmentBorrowing.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Tests\\EquipmentBorrowing.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ted\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\Ted\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",

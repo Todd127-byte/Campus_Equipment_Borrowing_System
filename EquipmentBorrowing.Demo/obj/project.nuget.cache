@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2cmKz1r/MEY=",
+  "dgSpecHash": "avOsS1dFIP0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Demo\\EquipmentBorrowing.Demo.csproj",
+  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Demo\\EquipmentBorrowing.Demo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ted\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.12\\microsoft.entityframeworkcore.10.0.12.nupkg.sha512",
     "C:\\Users\\Ted\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.12\\microsoft.entityframeworkcore.abstractions.10.0.12.nupkg.sha512",

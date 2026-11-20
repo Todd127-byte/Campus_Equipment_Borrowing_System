@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hQqGbFOxGqU=",
+  "dgSpecHash": "OoK//1L0l3M=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Desktop\\EquipmentBorrowing.Desktop.csproj",
+  "projectFilePath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Desktop\\EquipmentBorrowing.Desktop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ted\\.nuget\\packages\\avalonia\\12.1.1\\avalonia.12.1.1.nupkg.sha512",
     "C:\\Users\\Ted\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.27548.20260419\\avalonia.angle.windows.natives.2.1.27548.20260419.nupkg.sha512",

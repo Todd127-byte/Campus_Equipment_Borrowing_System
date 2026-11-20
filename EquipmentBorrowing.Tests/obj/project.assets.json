@@ -2034,11 +2034,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Tests\\EquipmentBorrowing.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Tests\\EquipmentBorrowing.Tests.csproj",
       "projectName": "EquipmentBorrowing.Tests",
-      "projectPath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Tests\\EquipmentBorrowing.Tests.csproj",
+      "projectPath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Tests\\EquipmentBorrowing.Tests.csproj",
       "packagesPath": "C:\\Users\\Ted\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2060,14 +2060,14 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Application\\EquipmentBorrowing.Application.csproj": {
-              "projectPath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Application\\EquipmentBorrowing.Application.csproj"
+            "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Application\\EquipmentBorrowing.Application.csproj": {
+              "projectPath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Application\\EquipmentBorrowing.Application.csproj"
             },
-            "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Domain\\EquipmentBorrowing.Domain.csproj": {
-              "projectPath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Domain\\EquipmentBorrowing.Domain.csproj"
+            "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Domain\\EquipmentBorrowing.Domain.csproj": {
+              "projectPath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Domain\\EquipmentBorrowing.Domain.csproj"
             },
-            "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Infrastructure\\EquipmentBorrowing.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Ted\\source\\repos\\EquipmentBorrowing\\EquipmentBorrowing.Infrastructure\\EquipmentBorrowing.Infrastructure.csproj"
+            "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Infrastructure\\EquipmentBorrowing.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Ted\\source\\repos\\Equipment_Borrowing_System\\EquipmentBorrowing.Infrastructure\\EquipmentBorrowing.Infrastructure.csproj"
             }
           }
         }
