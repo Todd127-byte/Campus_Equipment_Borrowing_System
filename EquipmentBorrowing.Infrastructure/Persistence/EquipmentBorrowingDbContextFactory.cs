@@ -1,0 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
+namespace EquipmentBorrowing.Infrastructure.Persistence;
+
+public sealed class EquipmentBorrowingDbContextFactory : IDesignTimeDbContextFactory<EquipmentBorrowingDbContext>
+{
+    public EquipmentBorrowingDbContext CreateDbContext(string[] args)
+    {
+        var options = new DbContextOptionsBuilder<EquipmentBorrowingDbContext>()
+            .UseNpgsql(DatabasePaths.GetDesignTimeConnectionString())
+            .Options;
+        return new EquipmentBorrowingDbContext(options);
+    }
+}

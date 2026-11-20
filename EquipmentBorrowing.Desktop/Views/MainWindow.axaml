@@ -1,0 +1,320 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:EquipmentBorrowing.Desktop.ViewModels"
+    xmlns:domain="using:EquipmentBorrowing.Domain"
+    xmlns:models="using:EquipmentBorrowing.Application.Models"
+    x:Class="EquipmentBorrowing.Desktop.Views.MainWindow"
+    x:DataType="vm:MainViewModel"
+    Width="1320"
+    Height="900"
+    MinWidth="1000"
+    MinHeight="680"
+    Title="Campus Equipment Borrowing System">
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Border Classes="app-header" Padding="24,14">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="app-title" Text="Campus Equipment Borrowing System" />
+                    <TextBlock Classes="muted-light" Text="Campus inventory, checkout, returns, and histories" />
+                </StackPanel>
+                <Button Grid.Column="1" Content="Refresh / Retry" Command="{Binding RetryCommand}" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Classes="feedback" Margin="18,12,18,0">
+            <TextBlock Classes="feedback-text" Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+        </Border>
+
+        <TabControl Grid.Row="2" Margin="18,12">
+            <TabItem Header="Equipment">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="16" ColumnDefinitions="1.2*,1*" ColumnSpacing="20">
+                        <StackPanel Spacing="12">
+                            <TextBlock Classes="page-title" Text="Equipment catalog" />
+                            <TextBlock Classes="muted" Text="UC-01: all registered equipment and current availability." />
+                            <ListBox ItemsSource="{Binding EquipmentCatalog}" SelectedItem="{Binding SelectedEquipment}" MinHeight="250">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="domain:Equipment">
+                                        <Border Classes="card" Margin="0,0,0,7">
+                                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                                <StackPanel Spacing="3">
+                                                    <TextBlock Classes="card-text" FontWeight="SemiBold" Text="{Binding Name}" />
+                                                    <TextBlock Classes="muted" Text="{Binding EquipmentIdentifier}" />
+                                                    <TextBlock Classes="muted" Text="{Binding Description}" TextWrapping="Wrap" />
+                                                </StackPanel>
+                                                <Border Grid.Column="1" Classes="status-chip" VerticalAlignment="Center">
+                                                    <TextBlock Classes="card-text" Text="{Binding IsAvailable, Converter={StaticResource EquipmentAvailabilityConverter}}" />
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <TextBlock IsVisible="{Binding HasNoEquipment}" Classes="muted" Text="No equipment is registered yet." />
+                            <TextBlock Classes="section-title" Text="Available equipment (UC-02)" />
+                            <ItemsControl ItemsSource="{Binding AvailableEquipment}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:EquipmentSelectionOption">
+                                        <Border Classes="card" Margin="0,0,0,6">
+                                            <TextBlock Classes="card-text" Text="{Binding Equipment.Name}" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Spacing="14">
+                            <Border Classes="card" Padding="18">
+                                <StackPanel Spacing="9">
+                                    <TextBlock Classes="section-title" Text="Register equipment (UC-15)" />
+                                    <TextBlock Text="Equipment identifier (required)" />
+                                    <TextBox Text="{Binding NewEquipmentIdentifier}" PlaceholderText="EQ-200" />
+                                    <TextBlock Text="Name (required)" />
+                                    <TextBox Text="{Binding NewEquipmentName}" PlaceholderText="Equipment name" />
+                                    <TextBlock Text="Description (optional)" />
+                                    <TextBox Text="{Binding NewEquipmentDescription}" PlaceholderText="Description" AcceptsReturn="True" MinHeight="58" />
+                                    <Button Classes="primary" Content="Register as available" Command="{Binding RegisterEquipmentCommand}" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Classes="card" Padding="18">
+                                <StackPanel Spacing="9">
+                                    <TextBlock Classes="section-title" Text="Update equipment (UC-16)" />
+                                    <TextBlock Classes="muted" Text="Select a catalog item first. Availability is controlled by checkout and return." TextWrapping="Wrap" />
+                                    <TextBlock Text="Identifier" />
+                                    <TextBox Text="{Binding EditEquipmentIdentifier}" />
+                                    <TextBlock Text="Name" />
+                                    <TextBox Text="{Binding EditEquipmentName}" />
+                                    <TextBlock Text="Description" />
+                                    <TextBox Text="{Binding EditEquipmentDescription}" AcceptsReturn="True" MinHeight="58" />
+                                    <Button Classes="primary" Content="Save equipment information" Command="{Binding UpdateEquipmentCommand}" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Students">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="16" ColumnDefinitions="1*,1.2*,1.2*" ColumnSpacing="16">
+                        <StackPanel Spacing="10">
+                            <TextBlock Classes="page-title" Text="Students" />
+                            <TextBlock Classes="muted" Text="Select a student to edit details or change borrowing eligibility." TextWrapping="Wrap" />
+                            <ListBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}" MinHeight="350">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="domain:Student">
+                                        <Border Classes="card" Margin="0,0,0,7">
+                                            <StackPanel Spacing="3">
+                                                <TextBlock Classes="card-text" FontWeight="SemiBold" Text="{Binding Name}" />
+                                                <TextBlock Classes="muted" Text="{Binding InstitutionalStudentNumber}" />
+                                                <TextBlock Classes="muted" Text="{Binding IsAllowedToBorrow, StringFormat='Eligible to borrow: {0}'}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <TextBlock IsVisible="{Binding HasNoStudents}" Classes="muted" Text="No students are registered yet." />
+                        </StackPanel>
+
+                        <Border Grid.Column="1" Classes="card" Padding="18" VerticalAlignment="Top">
+                            <StackPanel Spacing="9">
+                                <TextBlock Classes="section-title" Text="Register student (UC-12)" />
+                                <TextBlock Text="Institutional student number (required)" />
+                                <TextBox Text="{Binding NewStudentNumber}" PlaceholderText="2026-12345" />
+                                <TextBlock Text="Full name (required)" />
+                                <TextBox Text="{Binding NewStudentName}" PlaceholderText="Student name" />
+                                <TextBlock Text="Contact (optional)" />
+                                <TextBox Text="{Binding NewStudentContact}" PlaceholderText="Email or phone" />
+                                <Button Classes="primary" Content="Register eligible student" Command="{Binding RegisterStudentCommand}" />
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Grid.Column="2" Spacing="14">
+                            <Border Classes="card" Padding="18">
+                                <StackPanel Spacing="9">
+                                    <TextBlock Classes="section-title" Text="Update student (UC-13)" />
+                                    <TextBlock Text="Institutional student number" />
+                                    <TextBox Text="{Binding EditStudentNumber}" />
+                                    <TextBlock Text="Full name" />
+                                    <TextBox Text="{Binding EditStudentName}" />
+                                    <TextBlock Text="Contact (optional)" />
+                                    <TextBox Text="{Binding EditStudentContact}" />
+                                    <Button Classes="primary" Content="Save student information" Command="{Binding UpdateStudentCommand}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="card" Padding="18">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="section-title" Text="Borrowing eligibility (UC-14)" />
+                                    <TextBlock Classes="muted" Text="Restrictions prevent new checkout. Existing items can still be returned." TextWrapping="Wrap" />
+                                    <Button Classes="primary" Content="{Binding EligibilityActionLabel}" Command="{Binding ToggleEligibilityCommand}" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Checkout &amp; Returns">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="16" ColumnDefinitions="1*,1.15*" ColumnSpacing="18">
+                        <Border Classes="card" Padding="18" VerticalAlignment="Top">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="page-title" Text="Borrow equipment" />
+                                <TextBlock Classes="muted" Text="Choose one eligible student and available items. Multi-item checkout commits as one transaction." TextWrapping="Wrap" />
+                                <TextBlock Text="Student" />
+                                <ComboBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedBorrowStudent}" PlaceholderText="Select student">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate x:DataType="domain:Student">
+                                            <TextBlock Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Text="Available equipment (check each item)" />
+                                <Border BorderBrush="#344257" BorderThickness="1" CornerRadius="6" Padding="8">
+                                    <ItemsControl ItemsSource="{Binding AvailableEquipment}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EquipmentSelectionOption">
+                                                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Equipment.Name}" Margin="4" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Border>
+                                <TextBlock Text="Expected return date" />
+                                <DatePicker SelectedDate="{Binding ExpectedReturnDate}" />
+                                <Button Classes="primary" Content="Borrow one selected item (UC-03)" Command="{Binding BorrowSingleCommand}" />
+                                <Button Classes="primary" Content="Check out multiple items (UC-06)" Command="{Binding BorrowMultipleCommand}" />
+                                <Button Content="Refresh available items" Command="{Binding RetryCommand}" />
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Spacing="10">
+                            <TextBlock Classes="page-title" Text="Active borrowings" />
+                            <TextBlock Classes="muted" Text="Select an active record to return equipment. Restricted students can still return items." TextWrapping="Wrap" />
+                            <ListBox ItemsSource="{Binding ActiveBorrowings}" SelectedItem="{Binding SelectedBorrowing}" MinHeight="300">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="models:ActiveBorrowingSummary">
+                                        <Border Classes="card" Margin="0,0,0,7">
+                                            <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="12">
+                                                <StackPanel Spacing="3">
+                                                    <TextBlock Classes="card-text" FontWeight="SemiBold" Text="{Binding StudentName}" />
+                                                    <TextBlock Classes="muted" Text="{Binding StudentNumber}" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Spacing="3">
+                                                    <TextBlock Classes="card-text" FontWeight="SemiBold" Text="{Binding EquipmentName}" />
+                                                    <TextBlock Classes="muted" Text="{Binding EquipmentIdentifier}" />
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding ExpectedReturnDate, StringFormat='Due {0:MMM d, yyyy}'}" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <TextBlock IsVisible="{Binding HasNoActiveBorrowings}" Classes="muted" Text="There are no active borrowings." />
+                            <Button Classes="primary" Content="Return selected equipment (UC-05)" Command="{Binding ReturnSelectedCommand}" HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Histories &amp; Search">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="16" Spacing="16">
+                        <Border Classes="card" Padding="18">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="page-title" Text="Search borrowing records (UC-09)" />
+                                <Grid ColumnDefinitions="2*,*,*,Auto,Auto" ColumnSpacing="10">
+                                    <TextBox Text="{Binding SearchText}" PlaceholderText="Student name, student number, or equipment name" />
+                                    <ComboBox Grid.Column="1" ItemsSource="{Binding StatusFilterOptions}" SelectedItem="{Binding SelectedStatusFilter}" />
+                                    <ComboBox Grid.Column="2" ItemsSource="{Binding SortFieldOptions}" SelectedItem="{Binding SelectedSortField}" />
+                                    <CheckBox Grid.Column="3" Content="Descending" IsChecked="{Binding SortDescending}" VerticalAlignment="Center" />
+                                    <Button Grid.Column="4" Content="Search" Command="{Binding SearchBorrowingsCommand}" />
+                                </Grid>
+                                <Button Content="Clear filters / reset" Command="{Binding ResetSearchCommand}" HorizontalAlignment="Left" />
+                                <ListBox ItemsSource="{Binding SearchResults}" MinHeight="180">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="models:BorrowingRecordSummary">
+                                            <Border Classes="card" Margin="0,0,0,6">
+                                                <Grid ColumnDefinitions="*,*,*,Auto" ColumnSpacing="12">
+                                                    <StackPanel Spacing="2">
+                                                        <TextBlock Classes="card-text" FontWeight="SemiBold" Text="{Binding StudentName}" />
+                                                        <TextBlock Classes="muted" Text="{Binding StudentNumber}" />
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Spacing="2">
+                                                        <TextBlock Classes="card-text" FontWeight="SemiBold" Text="{Binding EquipmentName}" />
+                                                        <TextBlock Classes="muted" Text="{Binding EquipmentIdentifier}" />
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="2" Spacing="2">
+                                                        <TextBlock Classes="muted" Text="{Binding DateBorrowed, StringFormat='Checked out {0:MMM d, yyyy}'}" />
+                                                        <TextBlock Classes="muted" Text="{Binding ExpectedReturnDate, StringFormat='Due {0:MMM d, yyyy}'}" />
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="3" Spacing="2">
+                                                        <TextBlock Classes="card-text" Text="{Binding Status}" />
+                                                        <TextBlock Classes="muted" Text="{Binding ActualReturnDate, StringFormat='Returned {0:MMM d, yyyy}'}" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <TextBlock IsVisible="{Binding HasNoSearchResults}" Classes="muted" Text="No borrowing records match these criteria." />
+                            </StackPanel>
+                        </Border>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                            <Border Classes="card" Padding="18">
+                                <StackPanel Spacing="9">
+                                    <TextBlock Classes="section-title" Text="Student borrowing history (UC-07)" />
+                                    <ComboBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedHistoryStudent}" PlaceholderText="Select student">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate x:DataType="domain:Student"><TextBlock Text="{Binding Name}" /></DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Button Content="Load student history" Command="{Binding LoadStudentHistoryCommand}" HorizontalAlignment="Left" />
+                                    <ListBox ItemsSource="{Binding StudentHistory}" MinHeight="180">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="models:BorrowingRecordSummary">
+                                                <StackPanel Spacing="2">
+                                                    <TextBlock Classes="card-text" Text="{Binding EquipmentName}" />
+                                                    <TextBlock Classes="muted" Text="{Binding DateBorrowed, StringFormat='Checked out {0:MMM d, yyyy}'}" />
+                                                    <TextBlock Classes="muted" Text="{Binding Status}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <TextBlock IsVisible="{Binding HasNoStudentHistory}" Classes="muted" Text="No history for this student." />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1" Classes="card" Padding="18">
+                                <StackPanel Spacing="9">
+                                    <TextBlock Classes="section-title" Text="Equipment borrowing history (UC-08)" />
+                                    <ComboBox ItemsSource="{Binding EquipmentCatalog}" SelectedItem="{Binding SelectedHistoryEquipment}" PlaceholderText="Select equipment">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate x:DataType="domain:Equipment"><TextBlock Text="{Binding Name}" /></DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Button Content="Load equipment history" Command="{Binding LoadEquipmentHistoryCommand}" HorizontalAlignment="Left" />
+                                    <ListBox ItemsSource="{Binding EquipmentHistory}" MinHeight="180">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="models:BorrowingRecordSummary">
+                                                <StackPanel Spacing="2">
+                                                    <TextBlock Classes="card-text" Text="{Binding StudentName}" />
+                                                    <TextBlock Classes="muted" Text="{Binding DateBorrowed, StringFormat='Checked out {0:MMM d, yyyy}'}" />
+                                                    <TextBlock Classes="muted" Text="{Binding Status}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <TextBlock IsVisible="{Binding HasNoEquipmentHistory}" Classes="muted" Text="No history for this equipment." />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

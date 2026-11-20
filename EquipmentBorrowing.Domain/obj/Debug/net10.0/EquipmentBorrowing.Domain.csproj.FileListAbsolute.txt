@@ -1,0 +1,13 @@
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\bin\Debug\net10.0\EquipmentBorrowing.Domain.deps.json
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\bin\Debug\net10.0\EquipmentBorrowing.Domain.dll
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\bin\Debug\net10.0\EquipmentBorrowing.Domain.pdb
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.AssemblyInfoInputs.cache
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.AssemblyInfo.cs
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.dll
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\refint\EquipmentBorrowing.Domain.dll
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.pdb
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\ref\EquipmentBorrowing.Domain.dll
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\EquipmentBorrowing.Domain.sourcelink.json
+C:\Users\Ted\source\repos\EquipmentBorrowing\EquipmentBorrowing.Domain\obj\Debug\net10.0\Equipmen.4D54E095.Up2Date
